@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
+const initialState = ['Area boys', 'Boys II Men', 'Fela Kuti'];
+
 function App() {
+  const [books, setBooks] = useState(initialState);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-root">
+      <h1>This is a list of the books</h1>
+      <div>
+        {books.map(book => (
+          <p>{book}</p>
+        ))}
+      </div>
     </div>
   );
 }
