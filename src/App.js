@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 const initialState = ['Area boys', 'Boys II Men', 'Fela Kuti'];
 
 function App() {
-  const [books, setBooks] = useState(initialState);
+  const [books, setBooks] = useState([initialState]);
+
+  useEffect(() => {
+    fetch(
+      'https://openlibrary.org/api/books?bibkeys=ISBN:0385472579,LCCN:62019420&format=json'
+    ).then(res => {
+      console.log('show books from ISBN:', res);
+    });
+  }, []);
 
   return (
     <div className="app-root">
       <h1>This is a list of the books</h1>
-      <div>
+      {/* <div>
         {books.map(book => (
           <p>{book}</p>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
