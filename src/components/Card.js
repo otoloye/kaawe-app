@@ -25,7 +25,7 @@ export default function ImgMediaCard() {
           component="img"
           alt="Contemplative Reptile"
           height="140"
-          image={require('./assets/contemplative-reptile.jpg')}
+          image={require('../assets/contemplative-reptile.jpg')}
           title="Contemplative Reptile"
         />
         <CardContent>
