@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   card: {
     maxWidth: 345,
+    width: 250,
+    height: 300,
     margin: 10
   }
 });
@@ -29,11 +31,11 @@ export default function ImgMediaCard(props) {
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h6" component="h2">
             {props.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Author: {props.author}
+            {props.author}
           </Typography>
         </CardContent>
       </CardActionArea>

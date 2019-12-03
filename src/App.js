@@ -3,6 +3,7 @@ import './App.css';
 import ImgMediaCard from './components/Card';
 import CustomizedInputBase from './components/Search';
 import axios from 'axios';
+import Grid from '@material-ui/core/Grid';
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -25,17 +26,13 @@ function App() {
   return (
     <div>
       <CustomizedInputBase />
-      <div className="cards-container">
+      <Grid container justify="center" spacing={1}>
         {books.map(book => (
-          <div key={book.key}>
-            <ImgMediaCard
-              title={book.title}
-              author={book.author_name}
-              // book-image={book.image}
-            />
-          </div>
+          <Grid key={book.key} item>
+            <ImgMediaCard title={book.title} author={book.author_name} />
+          </Grid>
         ))}
-      </div>
+      </Grid>
     </div>
   );
 }
