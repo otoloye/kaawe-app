@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ImgMediaCard() {
+export default function ImgMediaCard(props) {
   const classes = useStyles();
 
   return (
@@ -30,10 +30,10 @@ export default function ImgMediaCard() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            The dip
+            {props.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Author: Seth Godin
+            Author: {props.author}
           </Typography>
         </CardContent>
       </CardActionArea>
