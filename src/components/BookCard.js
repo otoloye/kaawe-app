@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   card: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ImgMediaCard(props) {
+export default function BookCard(props) {
   const classes = useStyles();
 
   return (
@@ -42,7 +42,7 @@ export default function ImgMediaCard(props) {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          <Link to="/book">Learn More></Link>
+          {/* <Link to={`/book/${book.id}`}>Learn More</Link> */}
         </Button>
       </CardActions>
     </Card>

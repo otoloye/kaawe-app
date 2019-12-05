@@ -4,13 +4,13 @@ import './index.css';
 import App from './App';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
-import BookDetails from './components/BookDetails';
+import BookDetails from './pages/BookDetails';
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route path="/" exact component={App} />
-      <Route path="/book" exact component={BookDetails} />
+      <Route path="/book/:bookId" exact component={BookDetails} />
       <Route path="/" render={() => <div>404</div>} />
     </Switch>
   </BrowserRouter>,

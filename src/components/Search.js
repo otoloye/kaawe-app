@@ -27,15 +27,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function CustomizedInputBase() {
+export default function BookSearch({ onSubmitHandler, onInputChange, query }) {
   const classes = useStyles();
 
   return (
-    <Paper component="form" className={classes.root}>
+    <Paper component="form" className={classes.root} onSubmit={onSubmitHandler}>
       <InputBase
         className={classes.input}
         placeholder="Search For Books by title, author or ISBN"
-        inputProps={{ 'aria-label': 'search google maps' }}
+        inputProps={{ query }}
+        onChange={onInputChange}
       />
       <IconButton
         type="submit"
