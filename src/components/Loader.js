@@ -11,12 +11,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Loader() {
+export default function Loader({ loading, query }) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <CircularProgress />
+    <div>
+      <div className={classes.root}>{loading && <CircularProgress />}</div>
     </div>
   );
 }
