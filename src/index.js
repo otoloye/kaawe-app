@@ -8,10 +8,11 @@ import BookDetails from './components/BookDetails';
 
 ReactDOM.render(
   <BrowserRouter>
-    <Switch></Switch>
-    <Route path="/" exact component={App} />
-    <Route path="/book" exact component={BookDetails} />
-    <Route path="/" render={() => <div>404</div>} />
+    <Switch>
+      <Route path="/" exact component={App} />
+      <Route path="/book" exact component={BookDetails} />
+      <Route path="/" render={() => <div>404</div>} />
+    </Switch>
   </BrowserRouter>,
   document.getElementById('root')
 );
