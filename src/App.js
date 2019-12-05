@@ -5,6 +5,7 @@ import BookSearch from './components/BookSearch';
 import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import Loader from './components/Loader';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function App() {
   const [query, setQuery] = useState('');
@@ -59,14 +60,21 @@ function App() {
         onInputChange={onInputChange}
         query={query}
       />
-      <Loader query={query} loading={loading} />
-      <Grid container justify="center" spacing={1}>
-        {books.map((book, index) => (
-          <Grid key={index} item>
-            <BookCard title={book.volumeInfo.title} author={getAuthor(book)} />
-          </Grid>
-        ))}
-      </Grid>
+      {/* <Loader query={query} loading={loading} /> */}
+      {loading === false ? (
+        <Grid container justify="center" spacing={1}>
+          {books.map((book, index) => (
+            <Grid key={index} item>
+              <BookCard
+                title={book.volumeInfo.title}
+                author={getAuthor(book)}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      ) : (
+        <CircularProgress />
+      )}
     </div>
   );
 }

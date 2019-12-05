@@ -15,8 +15,13 @@ export default function Loader({ loading, query }) {
   const classes = useStyles();
 
   return (
-    <div>
-      <div className={classes.root}>{loading && <CircularProgress />}</div>
+    <div className={classes.root}>
+      {loading && (
+        <div>
+          <CircularProgress />
+          <p>Fetching books for {query}</p>
+        </div>
+      )}
     </div>
   );
 }
