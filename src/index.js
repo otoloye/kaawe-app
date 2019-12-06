@@ -11,7 +11,7 @@ ReactDOM.render(
     <Switch>
       <Route path="/" exact component={App} />
       <Route path="/book/:bookId" exact component={BookDetails} />
-      <Route path="/" render={() => <div>404</div>} />
+      {/* <Route path="/" render={() => <div>404</div>} /> */}
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

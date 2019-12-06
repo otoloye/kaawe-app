@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   card: {
@@ -28,7 +28,7 @@ export default function BookCard(props) {
           component="img"
           alt="Contemplative Reptile"
           height="140"
-          image={require('../assets/contemplative-reptile.jpg')}
+          image={props.coverImage}
           title="Contemplative Reptile"
         />
         <CardContent>
@@ -42,7 +42,7 @@ export default function BookCard(props) {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          {/* <Link to={`/book/${book.id}`}>Learn More</Link> */}
+          <Link to={`/book/${props.id}`}>Learn More</Link>
         </Button>
       </CardActions>
     </Card>

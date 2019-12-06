@@ -66,6 +66,8 @@ function App() {
           {books.map((book, index) => (
             <Grid key={index} item>
               <BookCard
+                id={book.id}
+                coverImage={book.volumeInfo.imageLinks.thumbnail}
                 title={book.volumeInfo.title}
                 author={getAuthor(book)}
               />
@@ -73,7 +75,7 @@ function App() {
           ))}
         </Grid>
       ) : (
-        <CircularProgress />
+        <CircularProgress className="loader-spinner" />
       )}
     </div>
   );
