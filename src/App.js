@@ -4,7 +4,6 @@ import BookCard from './components/BookCard';
 import BookSearch from './components/BookSearch';
 import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
-import Loader from './components/Loader';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 function App() {

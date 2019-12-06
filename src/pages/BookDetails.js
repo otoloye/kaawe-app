@@ -19,7 +19,7 @@ export default function BookDetails({ match }) {
     fetchData(`${API_BASE_URL}/${bookId}`).then(result => {
       setBook(result);
     });
-  }, [bookId]);
+  }, [API_BASE_URL, bookId]);
 
   return (
     <div>
