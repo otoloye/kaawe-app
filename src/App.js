@@ -61,7 +61,7 @@ function App() {
       />
       {/* <Loader query={query} loading={loading} /> */}
       {loading === false ? (
-        <Grid container justify="center" spacing={1}>
+        <Grid container justify="center" spacing={3}>
           {books.map((book, index) => (
             <Grid key={index} item>
               <BookCard
