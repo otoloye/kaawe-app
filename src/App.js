@@ -1,25 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 import BookCard from './components/BookCard';
 import BookSearch from './components/BookSearch';
-import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { getBooks } from './actions/books';
 
-function App() {
+function App(props) {
   const [query, setQuery] = useState('');
-  const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const API_BASE_URL = `https://www.googleapis.com/books/v1/volumes`;
-
-  const fetchData = async () => {
-    setLoading(true);
-    const result = await axios.get(`${API_BASE_URL}?q=${query}`);
-    const jsonResponse = await result.data.items;
-    setBooks(jsonResponse);
-    setLoading(false);
-  };
+  useEffect(() => {
+    props.getBooks(query);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const getAuthor = book => {
     if (book.volumeInfo.authors) {
@@ -50,7 +45,6 @@ function App() {
 
   const onSubmitHandler = e => {
     e.preventDefault();
-    fetchData();
   };
   return (
     <div>
@@ -62,7 +56,7 @@ function App() {
       {/* <Loader query={query} loading={loading} /> */}
       {loading === false ? (
         <Grid container justify="center" spacing={3}>
-          {books.map((book, index) => (
+          {(props.books || []).map((book, index) => (
             <Grid key={index} item>
               <BookCard
                 id={book.id}
@@ -79,5 +73,9 @@ function App() {
     </div>
   );
 }
-
-export default App;
+const mapStateToProps = state => {
+  return {
+    books: state.books
+  };
+};
+export default connect(mapStateToProps, { getBooks })(App);
