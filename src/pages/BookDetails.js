@@ -6,7 +6,7 @@ export default function BookDetails({ match }) {
     params: { bookId }
   } = match;
 
-  const [book, setBook] = useState([]);
+  const [book, setBook] = useState({});
   const API_BASE_URL = `https://www.googleapis.com/books/v1/volumes`;
 
   const fetchData = async url => {
@@ -24,20 +24,20 @@ export default function BookDetails({ match }) {
   return (
     <div>
       <h3>
-        <strong>Title: </strong>
+        <strong>Title:</strong>
         {book.title}
       </h3>
       <p>
-        <strong>Authors: </strong> {book.authors}
+        <strong>Authors:</strong> {book.authors}
       </p>
       <p>
-        <strong>Published Date: </strong> {book.publishedDate}
+        <strong>Published Date:</strong> {book.publishedDate}
       </p>
       <p>
-        <strong>Publisher: </strong> {book.publisher}
+        <strong>Publisher:</strong> {book.publisher}
       </p>
       <p>
-        <strong>Page Count: </strong> {book.pageCount}
+        <strong>Page Count:</strong> {book.pageCount}
       </p>
     </div>
   );

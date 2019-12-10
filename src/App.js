@@ -9,13 +9,13 @@ import { getBooks } from './actions/books';
 
 function App(props) {
   const [query, setQuery] = useState('');
-  const [loading, setLoading] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    props.getBooks(query);
+    props.getBooks(query).then(() => {
+      setLoading(false);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   const getAuthor = book => {
     if (book.volumeInfo.authors) {
       if (book.volumeInfo.authors.length > 1) {
@@ -54,9 +54,9 @@ function App(props) {
         query={query}
       />
       {/* <Loader query={query} loading={loading} /> */}
-      {loading === false ? (
+      {!loading ? (
         <Grid container justify="center" spacing={3}>
-          {(props.books || []).map((book, index) => (
+          {props.books.map((book, index) => (
             <Grid key={index} item>
               <BookCard
                 id={book.id}
