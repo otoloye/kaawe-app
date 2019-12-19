@@ -14,7 +14,6 @@ export const getBooks = query => {
       `https://www.googleapis.com/books/v1/volumes?q=microservice`
     );
     const jsonResult = result.data.items;
-    console.log('Gets here', jsonResult);
     dispatch(setBooks(jsonResult));
   };
 };
