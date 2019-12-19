@@ -1,26 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import BookCard from './components/BookCard';
 import BookSearch from './components/BookSearch';
-import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { fetchBooksApi } from './actions/books';
+import { connect } from 'react-redux';
 
-function App() {
+function App(props) {
+  useEffect(() => {
+    props.fetchBooksApi(query);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const [query, setQuery] = useState('');
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   const placeholderImage = 'http://lorempixel.com/400/200/';
-  const API_BASE_URL = `https://www.googleapis.com/books/v1/volumes`;
-
-  const fetchData = async () => {
-    setLoading(true);
-    const result = await axios.get(`${API_BASE_URL}?q=${query}`);
-    const jsonResponse = await result.data.items;
-    setBooks(jsonResponse);
-    setLoading(false);
-  };
 
   const getAuthor = book => {
     if (book.volumeInfo.authors) {
@@ -59,8 +53,9 @@ function App() {
 
   const onSubmitHandler = e => {
     e.preventDefault();
-    fetchData();
+    props.fetchBooksApi(query);
   };
+
   return (
     <div>
       <BookSearch
@@ -68,25 +63,31 @@ function App() {
         onInputChange={onInputChange}
         query={query}
       />
-      {/* <Loader query={query} loading={loading} /> */}
-      {loading === false ? (
-        <Grid container justify="center" spacing={3}>
-          {books.map((book, index) => (
-            <Grid key={index} item>
-              <BookCard
-                id={book.id}
-                coverImage={checkImage(book.volumeInfo.imageLinks)}
-                title={book.volumeInfo.title}
-                author={getAuthor(book)}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      ) : (
-        <CircularProgress className="loader-spinner" />
-      )}
+
+      <Grid container justify="center" spacing={3}>
+        {props.books.map((book, index) => (
+          <Grid key={index} item>
+            <BookCard
+              id={book.id}
+              coverImage={checkImage(book.volumeInfo.imageLinks)}
+              title={book.volumeInfo.title}
+              author={getAuthor(book)}
+            />
+          </Grid>
+        ))}
+      </Grid>
     </div>
   );
 }
+const mapStateToProps = state => {
+  return {
+    books: state.books
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchBooksApi: query => dispatch(fetchBooksApi(query))
+  };
+};
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
