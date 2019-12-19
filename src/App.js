@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import BookCard from './components/BookCard';
 import BookSearch from './components/BookSearch';
@@ -7,11 +7,6 @@ import { fetchBooksApi } from './actions/books';
 import { connect } from 'react-redux';
 
 function App(props) {
-  useEffect(() => {
-    props.fetchBooksApi(query);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const [query, setQuery] = useState('');
 
   const placeholderImage = 'http://lorempixel.com/400/200/';
