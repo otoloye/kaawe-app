@@ -11,6 +11,7 @@ function App() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const placeholderImage = 'http://lorempixel.com/400/200/';
   const API_BASE_URL = `https://www.googleapis.com/books/v1/volumes`;
 
   const fetchData = async () => {
@@ -44,6 +45,14 @@ function App() {
     }
   };
 
+  const checkImage = url => {
+    if (typeof url === 'undefined') {
+      return placeholderImage;
+    } else {
+      return url.thumbnail;
+    }
+  };
+
   const onInputChange = e => {
     setQuery(e.target.value);
   };
@@ -66,7 +75,7 @@ function App() {
             <Grid key={index} item>
               <BookCard
                 id={book.id}
-                coverImage={book.volumeInfo.imageLinks.thumbnail}
+                coverImage={checkImage(book.volumeInfo.imageLinks)}
                 title={book.volumeInfo.title}
                 author={getAuthor(book)}
               />
